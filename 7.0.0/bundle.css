@@ -1299,3 +1299,10 @@ code {
   content: '';
   margin: 0;
 }
+.heading___2W8-L a {
+  display: none;
+}
+
+.heading___2W8-L:hover a {
+  display: inline;
+}
