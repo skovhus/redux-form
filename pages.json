@@ -19,6 +19,10 @@
         "file": "/docs/ValueLifecycle.md",
         "title": "Value Lifecycle"
       },
+      "/docs/Flow.md": {
+        "file": "/docs/Flow.md",
+        "title": "Flow"
+      },
       "/docs/faq": {
         "file": "/docs/faq/README.md",
         "title": "FAQ",
