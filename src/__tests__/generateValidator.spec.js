@@ -1,4 +1,4 @@
-import { createSpy } from 'expect'
+import expect from 'expect'
 import generateValidator from '../generateValidator'
 import plain from '../structure/plain'
 import plainExpectations from '../structure/plain/expectations'
@@ -34,8 +34,8 @@ const describeGenerateValidator = (name, structure, expect) => {
     })
 
     it('should validate simple fields', () => {
-      const requiredSpy = createSpy(required).andCallThrough()
-      const minValueSpy = createSpy(minValue(4)).andCallThrough()
+      const requiredSpy = expect.createSpy(required)
+      const minValueSpy = expect.createSpy(minValue(4))
       const validator = generateValidator(
         {
           foo: requiredSpy,
@@ -91,7 +91,7 @@ const describeGenerateValidator = (name, structure, expect) => {
     })
 
     it('allows validation to refer to props', () => {
-      const withPropsSpy = createSpy(withProps).andCallThrough()
+      const withPropsSpy = expect.createSpy(withProps)
       const props1 = { valid: false }
       const props2 = { valid: true }
       const validator = generateValidator({ foo: withPropsSpy }, structure)
@@ -118,8 +118,8 @@ const describeGenerateValidator = (name, structure, expect) => {
     })
 
     it('should validate deep fields', () => {
-      const requiredSpy = createSpy(required).andCallThrough()
-      const minValueSpy = createSpy(minValue(4)).andCallThrough()
+      const requiredSpy = expect.createSpy(required)
+      const minValueSpy = expect.createSpy(minValue(4))
       const validator = generateValidator(
         {
           'deep.foo': requiredSpy,
@@ -192,8 +192,8 @@ const describeGenerateValidator = (name, structure, expect) => {
     })
 
     it('should accept multiple validators', () => {
-      const requiredSpy = createSpy(required).andCallThrough()
-      const minValueSpy = createSpy(minValue(4)).andCallThrough()
+      const requiredSpy = expect.createSpy(required)
+      const minValueSpy = expect.createSpy(minValue(4))
       const validator = generateValidator(
         {
           foo: [requiredSpy, minValueSpy]

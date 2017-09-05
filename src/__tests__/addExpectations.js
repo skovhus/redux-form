@@ -24,7 +24,11 @@ const addExpectations = expectations => {
     }
     return dest
   }
-  return (...params) => decorate(expect(...params))
+  const result = (...params) => decorate(expect(...params))
+  for (let key in expect) {
+    result[key] = expect[key]
+  }
+  return result
 }
 
 export default addExpectations

@@ -1,4 +1,4 @@
-import expect, { createSpy } from 'expect'
+import expect from 'expect'
 import isPromise from 'is-promise'
 import { noop } from 'lodash'
 import asyncValidation from '../asyncValidation'
@@ -21,24 +21,26 @@ describe('asyncValidation', () => {
   })
 
   it('should call start, fn, and stop on promise resolve', () => {
-    const fn = createSpy().andReturn(Promise.resolve())
-    const start = createSpy()
-    const stop = createSpy()
+    const fn = expect.createSpy().andReturn(Promise.resolve())
+    const start = expect.createSpy()
+    const stop = expect.createSpy()
     const promise = asyncValidation(fn, start, stop, field)
     expect(fn).toHaveBeenCalled()
-    expect(start).toHaveBeenCalled().toHaveBeenCalledWith(field)
+    expect(start).toHaveBeenCalled()
+    expect(start).toHaveBeenCalledWith(field)
     return promise.then(() => {
       expect(stop).toHaveBeenCalled()
     })
   })
 
   it('should throw when promise rejected with no errors', () => {
-    const fn = createSpy().andReturn(Promise.reject())
-    const start = createSpy()
-    const stop = createSpy()
+    const fn = expect.createSpy().andReturn(Promise.reject())
+    const start = expect.createSpy()
+    const stop = expect.createSpy()
     const promise = asyncValidation(fn, start, stop, field)
     expect(fn).toHaveBeenCalled()
-    expect(start).toHaveBeenCalled().toHaveBeenCalledWith(field)
+    expect(start).toHaveBeenCalled()
+    expect(start).toHaveBeenCalledWith(field)
     return promise.catch(() => {
       expect(stop).toHaveBeenCalled()
     })
@@ -46,14 +48,16 @@ describe('asyncValidation', () => {
 
   it('should call start, fn, and stop on promise reject', () => {
     const errors = { foo: 'error' }
-    const fn = createSpy().andReturn(Promise.reject(errors))
-    const start = createSpy()
-    const stop = createSpy()
+    const fn = expect.createSpy().andReturn(Promise.reject(errors))
+    const start = expect.createSpy()
+    const stop = expect.createSpy()
     const promise = asyncValidation(fn, start, stop, field)
     expect(fn).toHaveBeenCalled()
-    expect(start).toHaveBeenCalled().toHaveBeenCalledWith(field)
+    expect(start).toHaveBeenCalled()
+    expect(start).toHaveBeenCalledWith(field)
     return promise.catch(() => {
-      expect(stop).toHaveBeenCalled().toHaveBeenCalledWith(errors)
+      expect(stop).toHaveBeenCalled()
+      expect(stop).toHaveBeenCalledWith(errors)
     })
   })
 })

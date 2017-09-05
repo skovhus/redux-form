@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp:0 */
 import React from 'react'
-import { createSpy } from 'expect'
+import expect from 'expect'
 import { Provider } from 'react-redux'
 import { combineReducers as plainCombineReducers, createStore } from 'redux'
 import { combineReducers as immutableCombineReducers } from 'redux-immutablejs'
@@ -49,16 +49,18 @@ const describeValues = (
   })(props => <div {...props} />)
 
   const testProps = (useSection, ...config) => {
-    const Spy = createSpy(() => <div />).andCallThrough()
+    const Spy = expect.createSpy(() => <div />)
     const Decorated = formValues(...config)(Spy)
     TestUtils.renderIntoDocument(
       <Provider store={store}>
         <Form>
-          {useSection
-            ? <FormSection name="sub">
-                <Decorated />
-              </FormSection>
-            : <Decorated />}
+          {useSection ? (
+            <FormSection name="sub">
+              <Decorated />
+            </FormSection>
+          ) : (
+            <Decorated />
+          )}
         </Form>
       </Provider>
     )
@@ -73,7 +75,7 @@ const describeValues = (
     })
 
     it('should throw on missing context', () => {
-      const Spy = createSpy(() => <div />).andCallThrough()
+      const Spy = expect.createSpy(() => <div />)
 
       const Decorated = formValues('meep')(Spy)
       expect(() =>
@@ -104,10 +106,10 @@ const describeValues = (
 
     it('should update props when FormSection name changes', () => {
       const node = document.createElement('div')
-      const Spy = createSpy(() => <div />).andCallThrough()
+      const Spy = expect.createSpy(() => <div />)
       const Decorated = formValues('rat')(Spy)
 
-      const Component = ({ name }) =>
+      const Component = ({ name }) => (
         <Provider store={store}>
           <Form>
             <FormSection name={name}>
@@ -115,6 +117,7 @@ const describeValues = (
             </FormSection>
           </Form>
         </Provider>
+      )
 
       ReactDOM.render(<Component name="arr[0]" />, node)
 

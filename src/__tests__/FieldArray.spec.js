@@ -1,4 +1,4 @@
-import domExpect, { createSpy } from 'expect'
+import expect from 'expect'
 import expectElement from 'expect-element'
 /* eslint react/no-multi-comp:0 */
 import React, { Component } from 'react'
@@ -18,7 +18,7 @@ import plain from '../structure/plain'
 import plainExpectations from '../structure/plain/expectations'
 import addExpectations from './addExpectations'
 
-domExpect.extend(expectElement)
+expect.extend(expectElement)
 
 const describeFieldArray = (name, structure, combineReducers, expect) => {
   const reduxForm = createReduxForm(structure)
@@ -77,7 +77,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
     })
 
     it('should be okay with no array value', () => {
-      const iterate = createSpy()
+      const iterate = expect.createSpy()
       const props = testProps({
         values: {}
       })
@@ -117,7 +117,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should not pass api props into custom', () => {
       const store = makeStore()
-      const renderSpy = createSpy()
+      const renderSpy = expect.createSpy()
       class ArrayComponent extends Component {
         render() {
           renderSpy(this.props)
@@ -200,7 +200,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
         }
       })
       expect(props.fields.forEach).toBeA('function')
-      const iterate = createSpy()
+      const iterate = expect.createSpy()
       props.fields.forEach(iterate)
       expect(iterate).toHaveBeenCalled()
       expect(iterate.calls.length).toBe(3)
@@ -216,7 +216,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
         }
       })
       expect(props.fields.map).toBeA('function')
-      const iterate = createSpy()
+      const iterate = expect.createSpy()
       props.fields.map(iterate)
       expect(iterate).toHaveBeenCalled()
       expect(iterate.calls.length).toBe(3)
@@ -314,7 +314,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderArray = createSpy(() => <div />).andCallThrough()
+      const renderArray = expect.createSpy(() => <div />)
       class Form extends Component {
         render() {
           return (
@@ -389,7 +389,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
         }
       )
       expect(props.fields.length).toBe(3)
-      const iterate = createSpy()
+      const iterate = expect.createSpy()
       props.fields.forEach(iterate)
       expect(iterate).toHaveBeenCalled()
       expect(iterate.calls.length).toBe(3)
@@ -658,20 +658,22 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         ]
       })
-      const renderArray = ({ fields }) => (
+      const renderArray = ({ fields }) =>
         <div>
-          {fields.map((name, index) => (
+          {fields.map((name, index) =>
             <div key={index}>
               <Field name={`${name}.library`} component="input" />
               <Field name={`${name}.author`} component="input" />
               <Field
                 name={name}
-                component={props => <strong>{props.meta.error}</strong>}
+                component={props =>
+                  <strong>
+                    {props.meta.error}
+                  </strong>}
               />
             </div>
-          ))}
+          )}
         </div>
-      )
       class Form extends Component {
         render() {
           return (
@@ -691,9 +693,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
         </Provider>
       )
       const error = TestUtils.findRenderedDOMComponentWithTag(dom, 'strong')
-      domExpect(error)
-        .toExist()
-        .toHaveText('Too awesome!')
+      expect(error).toExist().toHaveText('Too awesome!')
     })
 
     it('should provide sync warning for array field', () => {
@@ -716,20 +716,22 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         ]
       })
-      const renderArray = ({ fields }) => (
+      const renderArray = ({ fields }) =>
         <div>
-          {fields.map((name, index) => (
+          {fields.map((name, index) =>
             <div key={index}>
               <Field name={`${name}.library`} component="input" />
               <Field name={`${name}.author`} component="input" />
               <Field
                 name={name}
-                component={props => <strong>{props.meta.warning}</strong>}
+                component={props =>
+                  <strong>
+                    {props.meta.warning}
+                  </strong>}
               />
             </div>
-          ))}
+          )}
         </div>
-      )
       class Form extends Component {
         render() {
           return (
@@ -749,9 +751,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
         </Provider>
       )
       const warning = TestUtils.findRenderedDOMComponentWithTag(dom, 'strong')
-      domExpect(warning)
-        .toExist()
-        .toHaveText('Too awesome!')
+      expect(warning).toExist().toHaveText('Too awesome!')
     })
 
     it('should reconnect when name changes', () => {
@@ -763,7 +763,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const component = createSpy(() => <div />).andCallThrough()
+      const component = expect.createSpy(() => <div />)
       class Form extends Component {
         constructor() {
           super()
@@ -806,13 +806,12 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const TestArray = ({ fields }) => (
+      const TestArray = ({ fields }) =>
         <div>
-          {fields.map(name => (
+          {fields.map(name =>
             <Field key={name} name={`${name}.val`} component={TestComponent} />
-          ))}
+          )}
         </div>
-      )
       class Form extends Component {
         render() {
           return (
@@ -867,13 +866,12 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const TestArray = ({ fields }) => (
+      const TestArray = ({ fields }) =>
         <div>
-          {fields.map(name => (
+          {fields.map(name =>
             <Field key={name} name={`${name}.val`} component={TestComponent} />
-          ))}
+          )}
         </div>
-      )
       class Form extends Component {
         render() {
           return (
@@ -901,13 +899,12 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const TestArray = ({ fields }) => (
+      const TestArray = ({ fields }) =>
         <div>
-          {fields.map(name => (
+          {fields.map(name =>
             <Field key={name} name={`${name}.val`} component={TestComponent} />
-          ))}
+          )}
         </div>
-      )
       class Form extends Component {
         render() {
           return (
@@ -968,13 +965,12 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const TestArray = ({ fields }) => (
+      const TestArray = ({ fields }) =>
         <div>
-          {fields.map(name => (
+          {fields.map(name =>
             <Field key={name} name={`${name}.val`} component={TestComponent} />
-          ))}
+          )}
         </div>
-      )
       class Form extends Component {
         render() {
           return (
@@ -1004,16 +1000,18 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map((name, index) => (
-            <Field name={`${name}`} component="input" key={index} />
-          ))}
-        </div>
-      )).andCallThrough()
-      const noMoreThanTwo = createSpy(
-        value => (value && size(value) > 2 ? 'Too many' : undefined)
-      ).andCallThrough()
+      const renderArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map((name, index) =>
+              <Field name={`${name}`} component="input" key={index} />
+            )}
+          </div>
+        )
+        
+      const noMoreThanTwo = expect
+        .createSpy(value => (value && size(value) > 2 ? 'Too many' : undefined))
+        
 
       class Form extends Component {
         render() {
@@ -1070,19 +1068,21 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map((name, index) => (
-            <Field name={`${name}`} component="input" key={index} />
-          ))}
-        </div>
-      )).andCallThrough()
-      const atLeastOne = createSpy(
-        value => (value && size(value) < 1 ? 'Too few' : undefined)
-      ).andCallThrough()
-      const noMoreThanTwo = createSpy(
-        value => (value && size(value) > 2 ? 'Too many' : undefined)
-      ).andCallThrough()
+      const renderArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map((name, index) =>
+              <Field name={`${name}`} component="input" key={index} />
+            )}
+          </div>
+        )
+        
+      const atLeastOne = expect
+        .createSpy(value => (value && size(value) < 1 ? 'Too few' : undefined))
+        
+      const noMoreThanTwo = expect
+        .createSpy(value => (value && size(value) > 2 ? 'Too many' : undefined))
+        
 
       class Form extends Component {
         render() {
@@ -1139,16 +1139,18 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map((name, index) => (
-            <Field name={`${name}`} component="input" key={index} />
-          ))}
-        </div>
-      )).andCallThrough()
-      const noMoreThanTwo = createSpy(
-        value => (value && size(value) > 2 ? 'Too many' : undefined)
-      ).andCallThrough()
+      const renderArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map((name, index) =>
+              <Field name={`${name}`} component="input" key={index} />
+            )}
+          </div>
+        )
+        
+      const noMoreThanTwo = expect
+        .createSpy(value => (value && size(value) > 2 ? 'Too many' : undefined))
+        
 
       class Form extends Component {
         render() {
@@ -1205,19 +1207,21 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map((name, index) => (
-            <Field name={`${name}`} component="input" key={index} />
-          ))}
-        </div>
-      )).andCallThrough()
-      const atLeastOne = createSpy(
-        value => (value && size(value) < 1 ? 'Too few' : undefined)
-      ).andCallThrough()
-      const noMoreThanTwo = createSpy(
-        value => (value && size(value) > 2 ? 'Too many' : undefined)
-      ).andCallThrough()
+      const renderArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map((name, index) =>
+              <Field name={`${name}`} component="input" key={index} />
+            )}
+          </div>
+        )
+        
+      const atLeastOne = expect
+        .createSpy(value => (value && size(value) < 1 ? 'Too few' : undefined))
+        
+      const noMoreThanTwo = expect
+        .createSpy(value => (value && size(value) > 2 ? 'Too many' : undefined))
+        
 
       class Form extends Component {
         render() {
@@ -1268,7 +1272,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should reconnect when props change', () => {
       const store = makeStore()
-      const component = createSpy(() => <div />).andCallThrough()
+      const component = expect.createSpy(() => <div />)
       class Form extends Component {
         constructor() {
           super()
@@ -1312,7 +1316,7 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should allow addition after focus', () => {
       const store = makeStore()
-      const component = createSpy(() => <div />).andCallThrough()
+      const component = expect.createSpy(() => <div />)
       class Form extends Component {
         constructor() {
           super()
@@ -1356,22 +1360,24 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should rerender when items added or removed', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button className="add" onClick={() => fields.push()}>
-            Add Dog
-          </button>
-          <button className="remove" onClick={() => fields.pop()}>
-            Remove Dog
-          </button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button className="add" onClick={() => fields.push()}>
+              Add Dog
+            </button>
+            <button className="remove" onClick={() => fields.pop()}>
+              Remove Dog
+            </button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -1439,17 +1445,23 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
             }
           }
         })
-        const renderFieldArray = createSpy(({ fields }) => (
-          <div>
-            {fields.map((field, index) => <div key={index}>{field}</div>)}
-            <button className="add" onClick={() => fields.push()}>
-              Add Dog
-            </button>
-            <button className="remove" onClick={() => fields.pop()}>
-              Remove Dog
-            </button>
-          </div>
-        )).andCallThrough()
+        const renderFieldArray = expect
+          .createSpy(({ fields }) =>
+            <div>
+              {fields.map((field, index) =>
+                <div key={index}>
+                  {field}
+                </div>
+              )}
+              <button className="add" onClick={() => fields.push()}>
+                Add Dog
+              </button>
+              <button className="remove" onClick={() => fields.pop()}>
+                Remove Dog
+              </button>
+            </div>
+          )
+          
         class Form extends Component {
           render() {
             return <FieldArray name="dogs" component={renderFieldArray} />
@@ -1535,17 +1547,23 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map((field, index) => <div key={index}>{field}</div>)}
-          <button className="add" onClick={() => fields.push()}>
-            Add Dog
-          </button>
-          <button className="remove" onClick={() => fields.pop()}>
-            Remove Dog
-          </button>
-        </div>
-      )).andCallThrough()
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map((field, index) =>
+              <div key={index}>
+                {field}
+              </div>
+            )}
+            <button className="add" onClick={() => fields.push()}>
+              Add Dog
+            </button>
+            <button className="remove" onClick={() => fields.pop()}>
+              Remove Dog
+            </button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -1632,29 +1650,30 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map((field, index) => (
-            <div key={index}>
-              {getIn(fields.get(index), 'hasCollar') && (
-                <span className="collar" />
-              )}
-              <Field
-                name={`${field}.hasCollar`}
-                component="input"
-                type="checkbox"
-              />
-              <Field name={`${field}.name`} component="input" />
-            </div>
-          ))}
-          <button className="add" onClick={() => fields.push()}>
-            Add Dog
-          </button>
-          <button className="remove" onClick={() => fields.pop()}>
-            Remove Dog
-          </button>
-        </div>
-      )).andCallThrough()
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map((field, index) =>
+              <div key={index}>
+                {getIn(fields.get(index), 'hasCollar') &&
+                  <span className="collar" />}
+                <Field
+                  name={`${field}.hasCollar`}
+                  component="input"
+                  type="checkbox"
+                />
+                <Field name={`${field}.name`} component="input" />
+              </div>
+            )}
+            <button className="add" onClick={() => fields.push()}>
+              Add Dog
+            </button>
+            <button className="remove" onClick={() => fields.pop()}>
+              Remove Dog
+            </button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -1696,16 +1715,18 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -1747,16 +1768,18 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return (
@@ -1821,19 +1844,21 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(member => (
-            <div key={member}>
-              <Field name={`${member}.name`} component={renderField} />
-              <Field name={`${member}.owner`} component={renderField} />
-            </div>
-          ))}
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(member =>
+              <div key={member}>
+                <Field name={`${member}.name`} component={renderField} />
+                <Field name={`${member}.owner`} component={renderField} />
+              </div>
+            )}
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return (
@@ -1875,17 +1900,19 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should create a list in the store on push(undefined)', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button onClick={() => fields.push()}>Add Dog</button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button onClick={() => fields.push()}>Add Dog</button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -1949,17 +1976,19 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should create a list in the store on push(value)', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button onClick={() => fields.push('Fido')}>Add Dog</button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button onClick={() => fields.push('Fido')}>Add Dog</button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -2023,17 +2052,19 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should create a list in the store on unshift(undefined)', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button onClick={() => fields.unshift()}>Add Dog</button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button onClick={() => fields.unshift()}>Add Dog</button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -2097,17 +2128,19 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should create a list in the store on unshift(value)', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button onClick={() => fields.unshift('Fido')}>Add Dog</button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button onClick={() => fields.unshift('Fido')}>Add Dog</button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -2171,17 +2204,19 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should create a list in the store on insert(undefined)', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button onClick={() => fields.insert(0)}>Add Dog</button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button onClick={() => fields.insert(0)}>Add Dog</button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -2245,17 +2280,19 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
 
     it('should create a list in the store on insert(value)', () => {
       const store = makeStore({})
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-          <button onClick={() => fields.insert(0, 'Fido')}>Add Dog</button>
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+            <button onClick={() => fields.insert(0, 'Fido')}>Add Dog</button>
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />
@@ -2325,17 +2362,23 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderField = createSpy(field => <input {...field.input} />)
+      const renderField = expect.createSpy(field => <input {...field.input} />)
 
-      const renderFields = createSpy(({ foo }) => (
-        <div>{foo.map(renderField)}</div>
-      )).andCallThrough()
+      const renderFields = expect
+        .createSpy(({ foo }) =>
+          <div>
+            {foo.map(renderField)}
+          </div>
+        )
+        
 
-      const component = createSpy(({ fields }) => (
-        <div>
-          <Fields names={fields} component={renderFields} />
-        </div>
-      )).andCallThrough()
+      const component = expect
+        .createSpy(({ fields }) =>
+          <div>
+            <Fields names={fields} component={renderFields} />
+          </div>
+        )
+        
 
       class Form extends Component {
         render() {
@@ -2370,16 +2413,18 @@ const describeFieldArray = (name, structure, combineReducers, expect) => {
           }
         }
       })
-      const renderField = createSpy(props => (
-        <input {...props.input} />
-      )).andCallThrough()
-      const renderFieldArray = createSpy(({ fields }) => (
-        <div>
-          {fields.map(field => (
-            <Field name={field} component={renderField} key={field} />
-          ))}
-        </div>
-      )).andCallThrough()
+      const renderField = expect
+        .createSpy(props => <input {...props.input} />)
+        
+      const renderFieldArray = expect
+        .createSpy(({ fields }) =>
+          <div>
+            {fields.map(field =>
+              <Field name={field} component={renderField} key={field} />
+            )}
+          </div>
+        )
+        
       class Form extends Component {
         render() {
           return <FieldArray name="dogs" component={renderFieldArray} />

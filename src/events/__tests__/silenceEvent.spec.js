@@ -1,4 +1,4 @@
-import expect, { createSpy } from 'expect'
+import expect from 'expect'
 import { noop } from 'lodash'
 import silenceEvent from '../silenceEvent'
 
@@ -23,8 +23,8 @@ describe('silenceEvent', () => {
   })
 
   it('should call preventDefault and stopPropagation', () => {
-    const preventDefault = createSpy()
-    const stopPropagation = createSpy()
+    const preventDefault = expect.createSpy()
+    const stopPropagation = expect.createSpy()
 
     silenceEvent({
       preventDefault,

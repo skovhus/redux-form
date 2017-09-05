@@ -70,121 +70,160 @@ describe('immutable', () => {
     expect(actionTypes).toEqual(expectedActionTypes)
   })
   it('should export arrayInsert', () => {
-    expect(arrayInsert).toExist().toBeA('function')
+    expect(arrayInsert).toExist()
+    expect(arrayInsert).toBeA('function')
   })
   it('should export arrayMove', () => {
-    expect(arrayMove).toExist().toBeA('function')
+    expect(arrayMove).toExist()
+    expect(arrayMove).toBeA('function')
   })
   it('should export arrayPop', () => {
-    expect(arrayPop).toExist().toBeA('function')
+    expect(arrayPop).toExist()
+    expect(arrayPop).toBeA('function')
   })
   it('should export arrayPush', () => {
-    expect(arrayPush).toExist().toBeA('function')
+    expect(arrayPush).toExist()
+    expect(arrayPush).toBeA('function')
   })
   it('should export arrayRemove', () => {
-    expect(arrayRemove).toExist().toBeA('function')
+    expect(arrayRemove).toExist()
+    expect(arrayRemove).toBeA('function')
   })
   it('should export arrayRemoveAll', () => {
-    expect(arrayRemoveAll).toExist().toBeA('function')
+    expect(arrayRemoveAll).toExist()
+    expect(arrayRemoveAll).toBeA('function')
   })
   it('should export arrayShift', () => {
-    expect(arrayShift).toExist().toBeA('function')
+    expect(arrayShift).toExist()
+    expect(arrayShift).toBeA('function')
   })
   it('should export arraySplice', () => {
-    expect(arraySplice).toExist().toBeA('function')
+    expect(arraySplice).toExist()
+    expect(arraySplice).toBeA('function')
   })
   it('should export arraySwap', () => {
-    expect(arraySwap).toExist().toBeA('function')
+    expect(arraySwap).toExist()
+    expect(arraySwap).toBeA('function')
   })
   it('should export arrayUnshift', () => {
-    expect(arrayUnshift).toExist().toBeA('function')
+    expect(arrayUnshift).toExist()
+    expect(arrayUnshift).toBeA('function')
   })
   it('should export autofill', () => {
-    expect(autofill).toExist().toBeA('function')
+    expect(autofill).toExist()
+    expect(autofill).toBeA('function')
   })
   it('should export blur', () => {
-    expect(blur).toExist().toBeA('function')
+    expect(blur).toExist()
+    expect(blur).toBeA('function')
   })
   it('should export change', () => {
-    expect(change).toExist().toBeA('function')
+    expect(change).toExist()
+    expect(change).toBeA('function')
   })
   it('should export clearSubmitErrors', () => {
-    expect(clearSubmitErrors).toExist().toBeA('function')
+    expect(clearSubmitErrors).toExist()
+    expect(clearSubmitErrors).toBeA('function')
   })
   it('should export defaultShouldAsyncValidate', () => {
-    expect(defaultShouldAsyncValidate).toExist().toBeA('function')
+    expect(defaultShouldAsyncValidate).toExist()
+    expect(defaultShouldAsyncValidate).toBeA('function')
   })
   it('should export defaultShouldValidate', () => {
-    expect(defaultShouldValidate).toExist().toBeA('function')
+    expect(defaultShouldValidate).toExist()
+    expect(defaultShouldValidate).toBeA('function')
   })
   it('should export destroy', () => {
-    expect(destroy).toExist().toBeA('function')
+    expect(destroy).toExist()
+    expect(destroy).toBeA('function')
   })
   it('should export Field', () => {
-    expect(Field).toExist().toBeA('function')
+    expect(Field).toExist()
+    expect(Field).toBeA('function')
   })
   it('should export Fields', () => {
-    expect(Fields).toExist().toBeA('function')
+    expect(Fields).toExist()
+    expect(Fields).toBeA('function')
   })
   it('should export FieldArray', () => {
-    expect(FieldArray).toExist().toBeA('function')
+    expect(FieldArray).toExist()
+    expect(FieldArray).toBeA('function')
   })
   it('should export Form', () => {
-    expect(Form).toExist().toBeA('function')
+    expect(Form).toExist()
+    expect(Form).toBeA('function')
   })
   it('should export FormSection', () => {
-    expect(FormSection).toExist().toBeA('function')
+    expect(FormSection).toExist()
+    expect(FormSection).toBeA('function')
   })
   it('should export focus', () => {
-    expect(focus).toExist().toBeA('function')
+    expect(focus).toExist()
+    expect(focus).toBeA('function')
   })
   it('should export formValueSelector', () => {
-    expect(formValueSelector).toExist().toBeA('function')
+    expect(formValueSelector).toExist()
+    expect(formValueSelector).toBeA('function')
   })
   it('should export getFormValues', () => {
-    expect(getFormValues).toExist().toBeA('function')
+    expect(getFormValues).toExist()
+    expect(getFormValues).toBeA('function')
   })
   it('should export getFormInitialValues', () => {
-    expect(getFormInitialValues).toExist().toBeA('function')
+    expect(getFormInitialValues).toExist()
+    expect(getFormInitialValues).toBeA('function')
   })
   it('should export getFormSyncErrors', () => {
-    expect(getFormSyncErrors).toExist().toBeA('function')
+    expect(getFormSyncErrors).toExist()
+    expect(getFormSyncErrors).toBeA('function')
   })
   it('should export getFormMeta', () => {
-    expect(getFormMeta).toExist().toBeA('function')
+    expect(getFormMeta).toExist()
+    expect(getFormMeta).toBeA('function')
   })
   it('should export getFormAsyncErrors', () => {
-    expect(getFormAsyncErrors).toExist().toBeA('function')
+    expect(getFormAsyncErrors).toExist()
+    expect(getFormAsyncErrors).toBeA('function')
   })
   it('should export getFormSyncWarnings', () => {
-    expect(getFormSyncWarnings).toExist().toBeA('function')
+    expect(getFormSyncWarnings).toExist()
+    expect(getFormSyncWarnings).toBeA('function')
   })
   it('should export getFormSubmitErrors', () => {
-    expect(getFormSubmitErrors).toExist().toBeA('function')
+    expect(getFormSubmitErrors).toExist()
+    expect(getFormSubmitErrors).toBeA('function')
   })
   it('should export initialize', () => {
-    expect(initialize).toExist().toBeA('function')
+    expect(initialize).toExist()
+    expect(initialize).toBeA('function')
   })
   it('should export isDirty', () => {
-    expect(isDirty).toExist().toBeA('function')
+    expect(isDirty).toExist()
+    expect(isDirty).toBeA('function')
   })
   it('should export isInvalid', () => {
-    expect(isInvalid).toExist().toBeA('function')
+    expect(isInvalid).toExist()
+    expect(isInvalid).toBeA('function')
   })
   it('should export isPristine', () => {
-    expect(isPristine).toExist().toBeA('function')
+    expect(isPristine).toExist()
+    expect(isPristine).toBeA('function')
   })
   it('should export isValid', () => {
-    expect(isValid).toExist().toBeA('function')
+    expect(isValid).toExist()
+    expect(isValid).toBeA('function')
   })
   it('should export isSubmitting', () => {
-    expect(isSubmitting).toExist().toBeA('function')
+    expect(isSubmitting).toExist()
+    expect(isSubmitting).toBeA('function')
   })
   it('should export hasSubmitSucceeded', () => {
-    expect(hasSubmitSucceeded).toExist().toBeA('function')
+    expect(hasSubmitSucceeded).toExist()
+    expect(hasSubmitSucceeded).toBeA('function')
   })
   it('should export hasSubmitFailed', () => {
-    expect(hasSubmitFailed).toExist().toBeA('function')
+    expect(hasSubmitFailed).toExist()
+    expect(hasSubmitFailed).toBeA('function')
   })
   it('should export fieldPropTypes', () => {
     expect(fieldPropTypes).toEqual(expectedFieldPropTypes)
@@ -196,51 +235,67 @@ describe('immutable', () => {
     expect(formPropTypes).toEqual(expectedPropTypes)
   })
   it('should export reducer', () => {
-    expect(reducer).toExist().toBeA('function')
+    expect(reducer).toExist()
+    expect(reducer).toBeA('function')
   })
   it('should export reduxForm', () => {
-    expect(reduxForm).toExist().toBeA('function')
+    expect(reduxForm).toExist()
+    expect(reduxForm).toBeA('function')
   })
   it('should export registerField', () => {
-    expect(registerField).toExist().toBeA('function')
+    expect(registerField).toExist()
+    expect(registerField).toBeA('function')
   })
   it('should export reset', () => {
-    expect(reset).toExist().toBeA('function')
+    expect(reset).toExist()
+    expect(reset).toBeA('function')
   })
   it('should export startAsyncValidation', () => {
-    expect(startAsyncValidation).toExist().toBeA('function')
+    expect(startAsyncValidation).toExist()
+    expect(startAsyncValidation).toBeA('function')
   })
   it('should export startSubmit', () => {
-    expect(startSubmit).toExist().toBeA('function')
+    expect(startSubmit).toExist()
+    expect(startSubmit).toBeA('function')
   })
   it('should export setSubmitFailed', () => {
-    expect(setSubmitFailed).toExist().toBeA('function')
+    expect(setSubmitFailed).toExist()
+    expect(setSubmitFailed).toBeA('function')
   })
   it('should export setSubmitSucceeded', () => {
-    expect(setSubmitSucceeded).toExist().toBeA('function')
+    expect(setSubmitSucceeded).toExist()
+    expect(setSubmitSucceeded).toBeA('function')
   })
   it('should export stopAsyncValidation', () => {
-    expect(stopAsyncValidation).toExist().toBeA('function')
+    expect(stopAsyncValidation).toExist()
+    expect(stopAsyncValidation).toBeA('function')
   })
   it('should export stopSubmit', () => {
-    expect(stopSubmit).toExist().toBeA('function')
+    expect(stopSubmit).toExist()
+    expect(stopSubmit).toBeA('function')
   })
   it('should export submit', () => {
-    expect(submit).toExist().toBeA('function')
+    expect(submit).toExist()
+    expect(submit).toBeA('function')
   })
   it('should export SubmissionError', () => {
-    expect(SubmissionError).toExist().toBeA('function')
+    expect(SubmissionError).toExist()
+    expect(SubmissionError).toBeA('function')
   })
   it('should export touch', () => {
-    expect(touch).toExist().toBeA('function')
+    expect(touch).toExist()
+    expect(touch).toBeA('function')
   })
   it('should export unregisterField', () => {
-    expect(unregisterField).toExist().toBeA('function')
+    expect(unregisterField).toExist()
+    expect(unregisterField).toBeA('function')
   })
   it('should export untouch', () => {
-    expect(untouch).toExist().toBeA('function')
+    expect(untouch).toExist()
+    expect(untouch).toBeA('function')
   })
   it('should export values', () => {
-    expect(values).toExist().toBeA('function')
+    expect(values).toExist()
+    expect(values).toBeA('function')
   })
 })

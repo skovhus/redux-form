@@ -1,15 +1,15 @@
 /*
  EXPERIMENTAL
 
-import expect, { createSpy } from 'expect'
+import expect from 'expect'
 import generateFields from '../generateFields'
 
 const createSpies = () => ({
-  createField: createSpy(key => ({ key })).andCallThrough(),
-  createArray: createSpy((key, initial = []) => {
+  createField: expect.createSpy(key => ({ key })),
+  createArray: expect.createSpy((key, initial = []) => {
     initial.key = key
     return initial
-  }).andCallThrough()
+  })
 })
 
 describe('generateFields', () => {

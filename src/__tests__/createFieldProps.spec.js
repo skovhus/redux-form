@@ -1,4 +1,4 @@
-import { createSpy } from 'expect'
+import expect from 'expect'
 import createFieldProps from '../createFieldProps'
 import plain from '../structure/plain'
 import plainExpectations from '../structure/plain/expectations'
@@ -52,7 +52,7 @@ const describeCreateFieldProps = (name, structure, expect) => {
     })
 
     it('should provide onBlur', () => {
-      const onBlur = createSpy()
+      const onBlur = expect.createSpy()
       expect(onBlur).toNotHaveBeenCalled()
       const result = createFieldProps({ getIn, toJS }, 'foo', {
         value: 'bar',
@@ -61,11 +61,12 @@ const describeCreateFieldProps = (name, structure, expect) => {
       expect(result.input.onBlur).toBeA('function')
       expect(onBlur).toNotHaveBeenCalled()
       result.input.onBlur('rabbit')
-      expect(onBlur).toHaveBeenCalled().toHaveBeenCalledWith('rabbit')
+      expect(onBlur).toHaveBeenCalled()
+      expect(onBlur).toHaveBeenCalledWith('rabbit')
     })
 
     it('should provide onChange', () => {
-      const onChange = createSpy()
+      const onChange = expect.createSpy()
       expect(onChange).toNotHaveBeenCalled()
       const result = createFieldProps({ getIn, toJS }, 'foo', {
         value: 'bar',
@@ -74,11 +75,12 @@ const describeCreateFieldProps = (name, structure, expect) => {
       expect(result.input.onChange).toBeA('function')
       expect(onChange).toNotHaveBeenCalled()
       result.input.onChange('rabbit')
-      expect(onChange).toHaveBeenCalled().toHaveBeenCalledWith('rabbit')
+      expect(onChange).toHaveBeenCalled()
+      expect(onChange).toHaveBeenCalledWith('rabbit')
     })
 
     it('should provide onFocus', () => {
-      const onFocus = createSpy()
+      const onFocus = expect.createSpy()
       expect(onFocus).toNotHaveBeenCalled()
       const result = createFieldProps({ getIn, toJS }, 'foo', {
         value: 'bar',
@@ -91,7 +93,7 @@ const describeCreateFieldProps = (name, structure, expect) => {
     })
 
     it('should provide onDragStart', () => {
-      const onDragStart = createSpy()
+      const onDragStart = expect.createSpy()
       const result = createFieldProps({ getIn, toJS }, 'foo', {
         value: 'bar',
         onDragStart
@@ -100,7 +102,7 @@ const describeCreateFieldProps = (name, structure, expect) => {
     })
 
     it('should provide onDrop', () => {
-      const onDrop = createSpy()
+      const onDrop = expect.createSpy()
       const result = createFieldProps({ getIn, toJS }, 'foo', {
         value: 'bar',
         onDrop
@@ -376,9 +378,13 @@ const describeCreateFieldProps = (name, structure, expect) => {
           state: empty,
           type: 'select-multiple'
         }).input.value
-      )
-        .toBeA('array')
-        .toEqual([])
+      ).toBeA('array')
+      expect(
+        createFieldProps({ getIn, toJS }, 'foo', {
+          state: empty,
+          type: 'select-multiple'
+        }).input.value
+      ).toEqual([])
     })
 
     it('should default value to undefined for file inputs', () => {
